@@ -17,4 +17,10 @@ RSpec.describe Contestant do
       expect(@alexander.spending_money).to eq(10)
     end
   end
+  
+  describe "out_of_state?" do
+    it "checks if a contestant is out of state" do
+      expect(@alexander.out_of_state?).to be false
+    end
+  end
 end

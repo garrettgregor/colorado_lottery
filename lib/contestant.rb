@@ -25,4 +25,8 @@ class Contestant
   def spending_money
     contestant_details[:spending_money]
   end
+
+  def out_of_state?
+    !contestant_details.has_value?("CO")
+  end
 end

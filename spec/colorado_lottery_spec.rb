@@ -30,6 +30,12 @@ RSpec.describe ColoradoLottery do
       age: 18,
       state_of_residence: 'CO',
       spending_money: 5})
+    @alexander.add_game_interest('Pick 4')
+    @alexander.add_game_interest('Mega Millions')
+    @frederick.add_game_interest('Mega Millions')
+    @winston.add_game_interest('Cash 5')
+    @winston.add_game_interest('Mega Millions')
+    @benjamin.add_game_interest('Mega Millions')
   end
 
   describe "initialize" do
@@ -43,13 +49,6 @@ RSpec.describe ColoradoLottery do
 
   describe "interested_and_18?" do
     it "checks if a contestant is interested and 18" do
-      @alexander.add_game_interest('Pick 4')
-      @alexander.add_game_interest('Mega Millions')
-      @frederick.add_game_interest('Mega Millions')
-      @winston.add_game_interest('Cash 5')
-      @winston.add_game_interest('Mega Millions')
-      @benjamin.add_game_interest('Mega Millions')
-
       expect(@lottery.interested_and_18?(@alexander, @pick_4)).to be true
       expect(@lottery.interested_and_18?(@benjamin, @mega_millions)).to be false
       expect(@lottery.interested_and_18?(@alexander, @cash_5)).to be false
@@ -58,18 +57,27 @@ RSpec.describe ColoradoLottery do
   
   describe "can_register?" do
     it "checks if a contestant can register for lottery" do
-      @alexander.add_game_interest('Pick 4')
-      @alexander.add_game_interest('Mega Millions')
-      @frederick.add_game_interest('Mega Millions')
-      @winston.add_game_interest('Cash 5')
-      @winston.add_game_interest('Mega Millions')
-      @benjamin.add_game_interest('Mega Millions')
-
       expect(@lottery.can_register?(@alexander, @pick_4)).to be true
       expect(@lottery.can_register?(@alexander, @cash_5)).to be false
       expect(@lottery.can_register?(@frederick, @mega_millions)).to be true
       expect(@lottery.can_register?(@benjamin, @mega_millions)).to be false
       expect(@lottery.can_register?(@frederick, @cash_5)).to be false
+    end
+  end
+  
+  describe "register_contestant" do
+    it "register contestants that can register" do
+      @lottery.register_contestant(@alexander, @pick_4)
+
+      expect(@lottery.registered_contestants).to eq({
+        "Pick 4" => [@alexander]})
+      
+      @lottery.register_contestant(@alexander, @mega_millions)
+
+      expect(@lottery.registered_contestants).to eq({
+        "Pick 4" => [@alexander],
+        "Mega Millions" => [@alexander]})
+
     end
   end
 end

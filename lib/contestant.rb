@@ -1,5 +1,6 @@
 class Contestant
-  attr_reader :contestant_details
+  attr_reader :contestant_details,
+              :game_interests
   def initialize(contestant_details)
     @contestant_details = {
       first_name:         'Alexander',
@@ -8,6 +9,7 @@ class Contestant
       state_of_residence: 'CO',
       spending_money:     10
     }
+    @game_interests = []
   end
 
   def full_name

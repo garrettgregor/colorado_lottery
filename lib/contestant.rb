@@ -31,4 +31,8 @@ class Contestant
   def out_of_state?
     !contestant_details.has_value?("CO")
   end
+
+  def add_game_interest(game)
+    game_interests << game
+  end
 end

@@ -3,11 +3,11 @@ class Contestant
               :game_interests
   def initialize(contestant_details)
     @contestant_details = {
-      first_name:         'Alexander',
-      last_name:          'Aigiades',
-      age:                28,
-      state_of_residence: 'CO',
-      spending_money:     10
+      first_name:          contestant_details[:first_name],
+      last_name:           contestant_details[:last_name],
+      age:                 contestant_details[:age],
+      state_of_residence:  contestant_details[:state_of_residence],
+      spending_money:      contestant_details[:spending_money]
     }
     @game_interests = []
   end

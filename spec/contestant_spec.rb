@@ -2,11 +2,15 @@ require "spec_helper"
 
 RSpec.describe Contestant do
   before(:each) do 
-    @alexander = Contestant.new({first_name: 'Alexander',
+    @alexander = Contestant.new(
+      {
+      first_name: 'Alexander',
       last_name: 'Aigiades',
       age: 28,
       state_of_residence: 'CO',
-      spending_money: 10})
+      spending_money: 10
+      }
+    )
   end
 
   describe "initialize" do

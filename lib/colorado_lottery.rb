@@ -20,6 +20,12 @@ class ColoradoLottery
     if can_register?(contestant, game)
       return_value = contestant
     end
-    @registered_contestants[game.name] = [return_value]
+    if !@registered_contestants.has_key?(game.name)
+      registered = []
+      @registered_contestants[game.name] = registered
+      registered << contestant
+    elsif @registered_contestants.has_key?(game.name)
+      @registered_contestants[game.name].push(contestant)
+    end
   end
 end
